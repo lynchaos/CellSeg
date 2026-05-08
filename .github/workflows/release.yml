@@ -26,18 +26,31 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Build release APK
+      - name: Decode keystore
+        run: echo "${{ secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 -d > ${{ runner.temp }}/release.jks
+
+      - name: Write signing config to local.properties
+        run: |
+          echo "RELEASE_STORE_FILE=${{ runner.temp }}/release.jks" >> local.properties
+          echo "RELEASE_KEY_ALIAS=${{ secrets.RELEASE_KEY_ALIAS }}" >> local.properties
+          echo "RELEASE_STORE_PASSWORD=${{ secrets.RELEASE_STORE_PASSWORD }}" >> local.properties
+          echo "RELEASE_KEY_PASSWORD=${{ secrets.RELEASE_KEY_PASSWORD }}" >> local.properties
+
+      - name: Build signed release APK
         run: ./gradlew assembleRelease --no-daemon
-        env:
-          # Unsigned release build — sign locally before distributing if needed
-          ANDROID_KEYSTORE_PATH: ""
 
       - name: Rename APK
         run: |
           TAG=${GITHUB_REF_NAME}
           mkdir -p dist
-          cp app/build/outputs/apk/release/app-release-unsigned.apk \
+          cp app/build/outputs/apk/release/app-release.apk \
              dist/CellSeg-${TAG}.apk
+
+      - name: Compute SHA-256
+        id: sha
+        run: |
+          HASH=$(sha256sum dist/CellSeg-${GITHUB_REF_NAME}.apk | awk '{print $1}')
+          echo "apk_sha256=${HASH}" >> "$GITHUB_OUTPUT"
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
@@ -46,4 +59,9 @@ jobs:
           draft: false
           prerelease: ${{ contains(github.ref_name, '-') }}
           generate_release_notes: true
+          body: |
+            ## SHA-256 checksums
+            | Asset | SHA-256 |
+            |---|---|
+            | `CellSeg-${{ github.ref_name }}.apk` | `${{ steps.sha.outputs.apk_sha256 }}` |
           files: dist/CellSeg-*.apk
