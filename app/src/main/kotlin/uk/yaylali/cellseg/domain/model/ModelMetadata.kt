@@ -20,8 +20,8 @@ data class ModelMetadata(
         val CYTO3_DEFAULT = ModelMetadata(
             modelId = "cyto3-onnx-fp16",
             version = "1.0.0",
-            sizeBytes = 26_489_790L,          // ~25.3 MB, FP32 weights
-            sha256 = "5339f1681a016a84dc39ea7d477779fb23dcc2140bb23620f1974428bc033b41",
+            sizeBytes = 13_291_351L,          // ~13.3 MB, FP16 weights
+            sha256 = "e0d6d40ec4191fabbc7ffbabb2004e26609d2ec755938ebf9cffdd37af3e4455",
             downloadedAt = Instant.EPOCH,
             sourceUrl = "https://huggingface.co/kmlyyll/cellpose-cyto3-onnx/resolve/main/cyto3-fp16.onnx",
             localPath = "",
