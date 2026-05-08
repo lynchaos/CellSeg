@@ -168,6 +168,7 @@ dependencies {
     testImplementation(libs.junit5.api)
     testImplementation(libs.junit5.params)
     testRuntimeOnly(libs.junit5.engine)
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     testImplementation(libs.turbine)
     testImplementation(libs.mockk)
     testImplementation(libs.mockwebserver)
