@@ -19,12 +19,15 @@ android {
         if (f.exists()) load(f.inputStream())
     }
 
-    signingConfigs {
-        create("release") {
-            storeFile = (localProps["RELEASE_STORE_FILE"] as String?)?.let { file(it) }
-            keyAlias = localProps["RELEASE_KEY_ALIAS"] as String? ?: ""
-            storePassword = localProps["RELEASE_STORE_PASSWORD"] as String? ?: ""
-            keyPassword = localProps["RELEASE_KEY_PASSWORD"] as String? ?: ""
+    val releaseStoreFile = (localProps["RELEASE_STORE_FILE"] as String?)?.let { file(it) }
+    if (releaseStoreFile != null) {
+        signingConfigs {
+            create("release") {
+                storeFile = releaseStoreFile
+                keyAlias = localProps["RELEASE_KEY_ALIAS"] as String
+                storePassword = localProps["RELEASE_STORE_PASSWORD"] as String
+                keyPassword = localProps["RELEASE_KEY_PASSWORD"] as String
+            }
         }
     }
 
@@ -48,7 +51,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
-            signingConfig = signingConfigs.getByName("release")
+            signingConfig = signingConfigs.findByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
