@@ -1,6 +1,7 @@
 # CellSeg
 
-[![GitHub release](https://img.shields.io/github/v/release/lynchaos/cellseg?label=release)](https://github.com/lynchaos/cellseg/releases/latest)
+[![Build](https://github.com/lynchaos/CellSeg/actions/workflows/android.yml/badge.svg)](https://github.com/lynchaos/CellSeg/actions)
+[![GitHub release](https://img.shields.io/github/v/release/lynchaos/CellSeg?label=release)](https://github.com/lynchaos/CellSeg/releases/latest)
 [![License: MIT](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
 [![Android](https://img.shields.io/badge/Android-8.0%2B-brightgreen)](https://developer.android.com)
 [![Website](https://img.shields.io/badge/website-cellseg.yaylali.uk-teal)](https://cellseg.yaylali.uk)
@@ -22,7 +23,7 @@ Segment brightfield, phase-contrast, and fluorescence images directly on your An
 - Adjustable parameters: diameter, flow threshold, cellprob threshold, channels
 - Per-run metrics: cell count, confluence %, area statistics
 - Run history, batch export (CSV)
-- CC-BY-NC licence acknowledgement
+- Cellpose attribution acknowledgement on first launch
 
 ---
 
@@ -39,8 +40,8 @@ Segment brightfield, phase-contrast, and fluorescence images directly on your An
 ### Steps
 
 ```bash
-git clone https://github.com/lynchaos/cellseg.git
-cd cellseg
+git clone https://github.com/lynchaos/CellSeg.git
+cd CellSeg
 ./gradlew assembleDebug
 ```
 
@@ -115,7 +116,13 @@ To rebuild the model from Cellpose weights, see [`tools/convert_cyto3_to_onnx.py
 
 Source code: [MIT Licence](LICENSE)
 
-The Cellpose model weights are licensed under **CC-BY-NC 4.0** (non-commercial). The app displays a mandatory acknowledgement on first launch.
+The Cellpose **codebase** is BSD 3-Clause (Howard Hughes Medical Institute).
+
+The Cellpose cyto3 **model weights**, converted to ONNX FP16 and hosted at
+`huggingface.co/lynchaos/cellpose-cyto3-onnx`, are redistributed with the explicit
+permission of the upstream authors at HHMI Janelia (granted by Marius Pachitariu,
+May 2026), under the conditions of attribution and licence propagation.
+See the [About page](https://cellseg.yaylali.uk/about) for full details.
 
 ---
 

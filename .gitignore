@@ -43,3 +43,6 @@ venv/
 identity_and_infrastructure_v2.md
 .env
 *.env
+
+# Model weights — hosted on HF Hub, not committed to source
+*.onnx

@@ -1,0 +1,10 @@
+# Tell GitHub's linguist that generated and vendored Java should not count
+# towards the repository language statistics (so Kotlin shows as majority).
+
+# KSP / Hilt / Room / Moshi generated sources
+app/build/**              linguist-generated=true
+**/build/**               linguist-generated=true
+build/**                  linguist-generated=true
+
+# Vendored Java libraries (e.g. Android-TiffBitmapFactory)
+*.java                    linguist-vendored=true
