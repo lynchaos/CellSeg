@@ -2,6 +2,7 @@ package uk.yaylali.cellseg.data.ml
 
 import timber.log.Timber
 import kotlin.math.floor
+import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
 /**
@@ -121,41 +122,101 @@ object FlowFollowingPostprocessor {
             }
         }
 
-        // Cluster by converged position — discretise to integer grid cell.
-        val labels = IntArray(hw)
-        val clusterMap = HashMap<Long, Int>(fgCount / 2 + 1)
-        var nextLabel = 1
-        val clusterSizes = mutableListOf<Int>()  // index = label - 1
+        // Cluster by converged position using histogram + local-maximum seeding,
+        // matching Python Cellpose get_masks() behavior.
+        //
+        // Background: unit-normalised flows cause pixels to oscillate ±1 px around
+        // the true attractor rather than stopping exactly there.  Exact-integer
+        // matching puts oscillating pixels in separate tiny clusters, all filtered
+        // away by minSize → 0 cells.  Python avoids this with a 2-D histogram,
+        // a 5×5 max-filter to locate attractor seeds, and per-pixel nearest-seed
+        // assignment — we replicate that here.
 
+        val labels = IntArray(hw)
+
+        // (1) Histogram of rounded final positions.
+        val hist = IntArray(hw)
+        val cyArr = IntArray(fgCount)
+        val cxArr = IntArray(fgCount)
         for (fi in 0 until fgCount) {
             val idx = fgIndices[fi]
-            val cy = posY[idx].toInt()
-            val cx = posX[idx].toInt()
-            val key = cy.toLong() * width + cx
-            val existing = clusterMap[key]
-            if (existing != null) {
-                labels[idx] = existing
-                clusterSizes[existing - 1]++
-            } else {
-                clusterMap[key] = nextLabel
-                labels[idx] = nextLabel
-                clusterSizes.add(1)
-                nextLabel++
+            val cy = posY[idx].roundToInt().coerceIn(0, height - 1)
+            val cx = posX[idx].roundToInt().coerceIn(0, width - 1)
+            cyArr[fi] = cy
+            cxArr[fi] = cx
+            hist[cy * width + cx]++
+        }
+
+        // (2) Find seeds: positions that are the strict local maximum in a 5×5 window.
+        // Ties broken by row-major order so each local-max region produces one seed.
+        // Equivalent to scipy.ndimage.maximum_filter1d(h,5) applied on both axes.
+        val seedLabel = IntArray(hw)   // 0 = not a seed
+        var nextSeed = 1
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                val cnt = hist[y * width + x]
+                if (cnt == 0) continue
+                var localMax = true
+                outer@ for (dy in -2..2) {
+                    val ny = (y + dy).coerceIn(0, height - 1)
+                    for (dx in -2..2) {
+                        if (dy == 0 && dx == 0) continue
+                        val nx = (x + dx).coerceIn(0, width - 1)
+                        val c = hist[ny * width + nx]
+                        // A strictly-larger neighbour, or an equal-count neighbour that
+                        // appears earlier in row-major order, disqualifies this position.
+                        if (c > cnt || (c == cnt && ny * width + nx < y * width + x)) {
+                            localMax = false; break@outer
+                        }
+                    }
+                }
+                if (localMax) seedLabel[y * width + x] = nextSeed++
+            }
+        }
+        val numSeeds = nextSeed - 1
+
+        // (3) Assign each fg pixel to its nearest seed within SEARCH_R pixels.
+        //     Direct histogram-hit (lbl != 0) is taken immediately; otherwise a
+        //     (2·SEARCH_R+1)² window search finds the closest seed.
+        val SEARCH_R = 6
+        val clusterSizes = IntArray(numSeeds + 1)
+        for (fi in 0 until fgCount) {
+            val idx = fgIndices[fi]
+            val cy = cyArr[fi]
+            val cx = cxArr[fi]
+            var lbl = seedLabel[cy * width + cx]   // direct seed hit
+            if (lbl == 0) {
+                var bestDist2 = Int.MAX_VALUE
+                for (dy in -SEARCH_R..SEARCH_R) {
+                    val ny = (cy + dy).coerceIn(0, height - 1)
+                    for (dx in -SEARCH_R..SEARCH_R) {
+                        val nx = (cx + dx).coerceIn(0, width - 1)
+                        val sl = seedLabel[ny * width + nx]
+                        if (sl != 0) {
+                            val d2 = dy * dy + dx * dx
+                            if (d2 < bestDist2) { bestDist2 = d2; lbl = sl }
+                        }
+                    }
+                }
+            }
+            if (lbl != 0) {
+                labels[idx] = lbl
+                clusterSizes[lbl]++
             }
         }
 
-        // Filter small clusters and re-index labels to contiguous 1..M.
-        val remap = IntArray(nextLabel)
+        // (4) Re-index to contiguous 1..M, dropping clusters smaller than minSize.
+        val remap = IntArray(numSeeds + 1)
         var newLabel = 0
-        for (i in 1 until nextLabel) {
-            if (clusterSizes[i - 1] >= minSize) remap[i] = ++newLabel
+        for (i in 1..numSeeds) {
+            if (clusterSizes[i] >= minSize) remap[i] = ++newLabel
         }
         for (idx in 0 until hw) {
             labels[idx] = remap[labels[idx]]
         }
 
         Timber.d("Postprocessor: fgCount=%d rawClusters=%d finalCells=%d minSize=%d",
-            fgCount, nextLabel - 1, newLabel, minSize)
+            fgCount, numSeeds, newLabel, minSize)
         return labels
     }
 }
