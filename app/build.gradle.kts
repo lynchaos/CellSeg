@@ -1,4 +1,5 @@
 import com.google.protobuf.gradle.id
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.android.application)
@@ -12,6 +13,20 @@ plugins {
 android {
     namespace = "uk.yaylali.cellseg"
     compileSdk = 35
+
+    val localProps = Properties().apply {
+        val f = rootProject.file("local.properties")
+        if (f.exists()) load(f.inputStream())
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = (localProps["RELEASE_STORE_FILE"] as String?)?.let { file(it) }
+            keyAlias = localProps["RELEASE_KEY_ALIAS"] as String? ?: ""
+            storePassword = localProps["RELEASE_STORE_PASSWORD"] as String? ?: ""
+            keyPassword = localProps["RELEASE_KEY_PASSWORD"] as String? ?: ""
+        }
+    }
 
     defaultConfig {
         applicationId = "uk.yaylali.cellseg"
@@ -33,6 +48,7 @@ android {
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
