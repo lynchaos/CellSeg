@@ -5,11 +5,12 @@
     <!-- ── Licence acknowledgement dialog ──────────────────────────────────── -->
     <string name="licence_title">Before you continue</string>
     <string name="licence_body">This app uses cell segmentation models from the Cellpose project,
-created by the Pachitariu and Stringer labs at HHMI Janelia.\n\nLocal mode uses Cellpose 3 (cyto3) weights, redistributed in ONNX
-format with the authors\' permission.\n\nCloud mode uses Cellpose-SAM, which is licensed under CC-BY-NC and is
-intended for non-commercial use only.\n\nBy using this app you agree to use it for non-commercial research,
-education, or evaluation only.\n\nThis app is independent. It is not affiliated with, sponsored by, or
-endorsed by the authors of Cellpose, Hugging Face, or any other party.</string>
+created by the Pachitariu and Stringer labs at HHMI Janelia, and is
+distributed with the authors\' permission.\n\nLocal mode uses Cellpose 3 (cyto3) weights, redistributed in ONNX
+format. Cloud mode uses the public Cellpose-SAM Hugging Face Space.\n\nThis app is independent. It is not affiliated with, sponsored by, or
+endorsed by the authors of Cellpose, Hugging Face, or any other party.\n\nUse it for whatever helps your work — research, education, hobby, or
+production lab use. Just keep the attribution intact if you fork or
+redistribute.</string>
     <string name="licence_accept">I understand and agree</string>
 
     <!-- ── Backend tier labels ─────────────────────────────────────────────── -->
@@ -28,7 +29,7 @@ endorsed by the authors of Cellpose, Hugging Face, or any other party.</string>
     <!-- ── Onboarding ──────────────────────────────────────────────────────── -->
     <string name="onboarding_title">Welcome to CellSeg</string>
     <string name="onboarding_body">Capture or import a microscopy image and run automated cell segmentation — on your device or via a cloud model.\n\nLocal mode works fully offline. Cloud mode requires network and uses Cellpose-SAM on a Hugging Face Space.</string>
-    <string name="onboarding_download_model">Download cyto3 model now (~26 MB, one-time)</string>
+    <string name="onboarding_download_model">Download cyto3 model now (~14 MB, one-time)</string>
     <string name="onboarding_skip">Skip for now</string>
     <string name="onboarding_next">Next</string>
     <string name="onboarding_get_started">Get started</string>
@@ -52,7 +53,7 @@ endorsed by the authors of Cellpose, Hugging Face, or any other party.</string>
 
     <!-- ── Analyze screen ─────────────────────────────────────────────────── -->
     <string name="run_cellpose">Run Cellpose</string>
-    <string name="download_model_cta">Download model (26 MB)</string>
+    <string name="download_model_cta">Download model (~14 MB)</string>
     <string name="params_max_resize">Max dimension (px)</string>
     <string name="params_max_iter">Max iterations</string>
     <string name="params_flow_threshold">Flow threshold</string>
@@ -191,13 +192,13 @@ endorsed by the authors of Cellpose, Hugging Face, or any other party.</string>
     <string name="settings_attribution">Licence &amp; attribution</string>
     <string name="model_mgmt_title">Model management</string>
     <string name="model_cyto3_name">Cellpose cyto3 (ONNX FP16)</string>
-    <string name="model_cyto3_desc">Local on-device model (~26 MB). Downloaded once to internal storage.</string>
+    <string name="model_cyto3_desc">Local on-device model (~14 MB). Downloaded once to internal storage.</string>
     <string name="model_status_downloaded">Downloaded and ready</string>
     <string name="model_delete_button">Delete model</string>
-    <string name="model_download_button">Download model (~26 MB)</string>
+    <string name="model_download_button">Download model (~14 MB)</string>
     <string name="model_redownload_button">Re-download</string>
     <string name="attribution_title">Licence &amp; attribution</string>
-    <string name="attribution_cellpose_cc_notice">The Cellpose-SAM model (cloud backend) is licensed under CC BY-NC 4.0 and is intended for non-commercial research only.</string>
+    <string name="attribution_cellpose_cc_notice">The Cellpose-SAM model (cloud backend) is used via a public Hugging Face Space. Cloud inference requires network access and is subject to Hugging Face Space rate limits.</string>
 
     <!-- ── Content descriptions ───────────────────────────────────────────── -->
     <string name="cd_original_image">Original image</string>
