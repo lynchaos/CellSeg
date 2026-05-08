@@ -105,7 +105,7 @@ app/
 The ONNX model (`cyto3-fp16.onnx`, ~26 MB) is **not bundled** in the APK. It is downloaded on first use from:
 
 ```
-https://huggingface.co/lynchaos/cellpose-cyto3-onnx/resolve/main/cyto3-fp16.onnx
+https://huggingface.co/kmlyyll/cellpose-cyto3-onnx/resolve/main/cyto3-fp16.onnx
 ```
 
 To rebuild the model from Cellpose weights, see [`tools/convert_cyto3_to_onnx.py`](tools/convert_cyto3_to_onnx.py).
@@ -119,7 +119,7 @@ Source code: [MIT Licence](LICENSE)
 The Cellpose **codebase** is BSD 3-Clause (Howard Hughes Medical Institute).
 
 The Cellpose cyto3 **model weights**, converted to ONNX FP16 and hosted at
-`huggingface.co/lynchaos/cellpose-cyto3-onnx`, are redistributed with the explicit
+`huggingface.co/kmlyyll/cellpose-cyto3-onnx`, are redistributed with the explicit
 permission of the upstream authors at HHMI Janelia (granted by Marius Pachitariu,
 May 2026), under the conditions of attribution and licence propagation.
 See the [About page](https://cellseg.yaylali.uk/about) for full details.
