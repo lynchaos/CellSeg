@@ -41,6 +41,10 @@
 -keep class com.google.protobuf.** { *; }
 -dontwarn com.google.protobuf.**
 
+# Generated proto message classes (AppSettingsProto, SegmentationParamsProto, etc.)
+# R8 must not rename or remove these — DataStore serializer accesses them by name.
+-keep class uk.yaylali.cellseg.data.datastore.proto.** { *; }
+
 # ── ONNX Runtime ─────────────────────────────────────────────────────────────
 -keep class ai.onnxruntime.** { *; }
 -dontwarn ai.onnxruntime.**
