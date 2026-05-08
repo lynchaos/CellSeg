@@ -150,7 +150,9 @@ class RemoteHfGradioBackend @Inject constructor(
                     val h = rasters.height
                     Timber.d("RemoteHfGradioBackend: decoded TIFF mask %dx%d", w, h)
                     val labels = IntArray(w * h) { i ->
-                        rasters.getPixelSample(0, i % w, i / w).toInt()
+                        // and 0xFFFF: treat as unsigned 16-bit (Cellpose saves uint16 TIFFs;
+                        // mil.nga:tiff may return a signed Short for labels > 32767).
+                        rasters.getPixelSample(0, i % w, i / w).toInt() and 0xFFFF
                     }
                     Triple(labels, w, h)
                 }

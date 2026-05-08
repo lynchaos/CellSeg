@@ -2,6 +2,7 @@ package uk.yaylali.cellseg.data.ml
 
 import timber.log.Timber
 import kotlin.math.floor
+import kotlin.math.sqrt
 
 /**
  * Pure-Kotlin implementation of Cellpose's flow-following post-processing.
@@ -73,6 +74,19 @@ object FlowFollowingPostprocessor {
             if (output[probOff + i] > cellprobThreshold) fgIndices[fgCount++] = i
         }
 
+        // Normalize flow vectors to unit length per-pixel (matches Python Cellpose: dP / (||dP|| + ε)).
+        // Raw ONNX output flows have large magnitude; without normalization positions diverge or
+        // barely move, so all clusters fall below minSize and the result is always 0 cells.
+        val normDY = FloatArray(hw)
+        val normDX = FloatArray(hw)
+        for (i in 0 until hw) {
+            val dy = output[dYOff + i]
+            val dx = output[dXOff + i]
+            val mag = sqrt(dy * dy + dx * dx) + 1e-20f
+            normDY[i] = dy / mag
+            normDX[i] = dx / mag
+        }
+
         // Per-pixel current position (initialised to pixel centre).
         val posY = FloatArray(hw) { i -> (i / width).toFloat() }
         val posX = FloatArray(hw) { i -> (i % width).toFloat() }
@@ -97,10 +111,10 @@ object FlowFollowingPostprocessor {
                 val i01 = y0 * width + x1
                 val i10 = y1 * width + x0
                 val i11 = y1 * width + x1
-                val gy = (1f - ty) * ((1f - tx) * output[dYOff + i00] + tx * output[dYOff + i01]) +
-                        ty * ((1f - tx) * output[dYOff + i10] + tx * output[dYOff + i11])
-                val gx = (1f - ty) * ((1f - tx) * output[dXOff + i00] + tx * output[dXOff + i01]) +
-                        ty * ((1f - tx) * output[dXOff + i10] + tx * output[dXOff + i11])
+                val gy = (1f - ty) * ((1f - tx) * normDY[i00] + tx * normDY[i01]) +
+                        ty * ((1f - tx) * normDY[i10] + tx * normDY[i11])
+                val gx = (1f - ty) * ((1f - tx) * normDX[i00] + tx * normDX[i01]) +
+                        ty * ((1f - tx) * normDX[i10] + tx * normDX[i11])
 
                 posY[idx] = (py + gy).coerceIn(0f, maxY)
                 posX[idx] = (px + gx).coerceIn(0f, maxX)
