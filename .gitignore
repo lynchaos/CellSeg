@@ -5,7 +5,7 @@
 /build/
 
 # Gradle wrapper binaries
-gradle/wrapper/gradle-wrapper.jar
+# gradle-wrapper.jar is committed intentionally so CI can run without network access
 
 # IDE
 .idea/
