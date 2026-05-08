@@ -88,7 +88,7 @@ fun AnalyzeScreen(
         },
         bottomBar = {
             Surface(tonalElevation = 3.dp) {
-                Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+                Column(modifier = Modifier.navigationBarsPadding().padding(horizontal = 16.dp, vertical = 12.dp)) {
                     // Model not downloaded warning
                     if (uiState.modelNotDownloaded && uiState.selectedTier == BackendTier.LOCAL_CYTO3) {
                         Text(

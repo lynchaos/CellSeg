@@ -65,7 +65,7 @@ fun BatchScreen(
         bottomBar = {
             if (uiState.items.isNotEmpty()) {
                 Surface(tonalElevation = 3.dp) {
-                    Column(modifier = Modifier.padding(horizontal = 16.dp, vertical = 12.dp)) {
+                    Column(modifier = Modifier.navigationBarsPadding().padding(horizontal = 16.dp, vertical = 12.dp)) {
                         if (uiState.modelNotDownloaded && uiState.selectedTier == BackendTier.LOCAL_CYTO3) {
                             Text(
                                 stringResource(R.string.error_model_not_downloaded),
