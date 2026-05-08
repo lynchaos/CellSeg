@@ -18,7 +18,7 @@ Segment brightfield, phase-contrast, and fluorescence images directly on your An
 
 - Capture images via camera or pick from gallery (TIFF supported)
 - Tag samples with channel, magnification, cell line, well ID, timepoint
-- Local segmentation with Cellpose cyto3 ONNX (~14 MB, downloaded on first use)
+- Local segmentation with Cellpose cyto3 ONNX (~25 MB, downloaded on first use)
 - Cloud segmentation via Hugging Face Gradio Spaces (public or private)
 - Adjustable parameters: diameter, flow threshold, cellprob threshold, channels
 - Per-run metrics: cell count, confluence %, area statistics
