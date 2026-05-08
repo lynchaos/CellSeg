@@ -51,6 +51,9 @@
 # ── Security Crypto ──────────────────────────────────────────────────────────
 -keep class androidx.security.crypto.** { *; }
 
+# ── Tink (used by Security Crypto) — errorprone annotations are compile-time only ──
+-dontwarn com.google.errorprone.annotations.**
+
 # ── Tiff library ─────────────────────────────────────────────────────────────
 -keep class com.waynejo.androidndkgif.** { *; }
 -dontwarn com.waynejo.**
