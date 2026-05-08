@@ -1,0 +1,89 @@
+NOTICE – CellSeg for Android
+============================
+
+Copyright (c) 2025–2026 Kemal Yaylali.
+Licensed under the MIT License. See LICENSE for full text.
+
+This product includes and depends on the following third-party software:
+
+-------------------------------------------------------------------------------
+Cellpose (cyto3 model weights)
+  Copyright (c) 2020 Howard Hughes Medical Institute
+  Authors: Carsen Stringer & Marius Pachitariu
+  License: BSD 3-Clause
+  Source:  https://github.com/MouseLand/cellpose
+  Note: The bundled ONNX model file was converted from the Cellpose cyto3
+        checkpoint. Model weights remain subject to the original BSD 3-Clause
+        licence and the Cellpose paper citation requirement.
+  Citation:
+    Stringer, C., Wang, T., Michaelos, M. & Pachitariu, M.
+    "Cellpose: a generalist algorithm for cellular segmentation."
+    Nature Methods 18, 100–106 (2021). https://doi.org/10.1038/s41592-020-01018-x
+
+-------------------------------------------------------------------------------
+ONNX Runtime for Android
+  Copyright (c) Microsoft Corporation
+  Version: 1.19.0
+  License: MIT
+  Source:  https://github.com/microsoft/onnxruntime
+
+-------------------------------------------------------------------------------
+Android Jetpack (Compose, Room, DataStore, Navigation, CameraX, Hilt)
+  Copyright (c) The Android Open Source Project
+  Compose BOM: 2024.10.00 | Room: 2.8.4 | Hilt: 2.59.2
+  License: Apache 2.0
+  Source:  https://developer.android.com/jetpack
+
+-------------------------------------------------------------------------------
+Dagger / Hilt
+  Copyright (c) Google LLC
+  Version: 2.59.2
+  License: Apache 2.0
+  Source:  https://github.com/google/dagger
+
+-------------------------------------------------------------------------------
+OkHttp
+  Copyright (c) Square, Inc.
+  Version: 4.12.0
+  License: Apache 2.0
+  Source:  https://github.com/square/okhttp
+
+-------------------------------------------------------------------------------
+Retrofit
+  Copyright (c) Square, Inc.
+  Version: 2.11.0
+  License: Apache 2.0
+  Source:  https://github.com/square/retrofit
+
+-------------------------------------------------------------------------------
+Moshi
+  Copyright (c) Square, Inc.
+  Version: 1.15.1
+  License: Apache 2.0
+  Source:  https://github.com/square/moshi
+
+-------------------------------------------------------------------------------
+okhttp-eventsource (LaunchDarkly)
+  Copyright (c) LaunchDarkly, Inc.
+  Version: 4.1.1
+  License: Apache 2.0
+  Source:  https://github.com/launchdarkly/okhttp-eventsource
+
+-------------------------------------------------------------------------------
+TIFF Java (NGA)
+  Copyright (c) 2017–2024 National Geospatial-Intelligence Agency (NGA)
+  Version: 3.0.0
+  License: MIT
+  Source:  https://github.com/ngageoint/tiff-java
+
+-------------------------------------------------------------------------------
+Kotlin Standard Library
+  Copyright (c) JetBrains s.r.o. and Kotlin Contributors
+  License: Apache 2.0
+  Source:  https://github.com/JetBrains/kotlin
+
+-------------------------------------------------------------------------------
+Full licence texts for Apache 2.0, BSD 3-Clause, and MIT can be found at:
+  https://www.apache.org/licenses/LICENSE-2.0
+  https://opensource.org/licenses/BSD-3-Clause
+  https://opensource.org/licenses/MIT

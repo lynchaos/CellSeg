@@ -1,0 +1,9 @@
+name: config
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://cellseg.yaylali.uk/docs/
+    about: Read the documentation for usage help and troubleshooting.
+  - name: Discussion
+    url: https://github.com/lynchaos/cellseg/discussions
+    about: Ask questions and discuss ideas in GitHub Discussions.

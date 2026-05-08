@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Camera capture temp files in cache -->
+    <cache-path name="camera_captures" path="." />
+    <!-- Exported CSV/JSON files in internal files dir -->
+    <files-path name="exports" path="exports/" />
+</paths>

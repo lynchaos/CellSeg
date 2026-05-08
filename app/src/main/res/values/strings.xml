@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CellSeg</string>
+
+    <!-- ── Licence acknowledgement dialog ──────────────────────────────────── -->
+    <string name="licence_title">Before you continue</string>
+    <string name="licence_body">This app uses cell segmentation models from the Cellpose project,
+created by the Pachitariu and Stringer labs at HHMI Janelia.\n\nLocal mode uses Cellpose 3 (cyto3) weights, redistributed in ONNX
+format with the authors\' permission.\n\nCloud mode uses Cellpose-SAM, which is licensed under CC-BY-NC and is
+intended for non-commercial use only.\n\nBy using this app you agree to use it for non-commercial research,
+education, or evaluation only.\n\nThis app is independent. It is not affiliated with, sponsored by, or
+endorsed by the authors of Cellpose, Hugging Face, or any other party.</string>
+    <string name="licence_accept">I understand and agree</string>
+
+    <!-- ── Backend tier labels ─────────────────────────────────────────────── -->
+    <string name="backend_local_label">On this phone</string>
+    <string name="backend_local_tagline">Free, fast, works offline. Uses Cellpose 3 cyto3.</string>
+    <string name="backend_public_hf_label">Public Hugging Face Space</string>
+    <string name="backend_public_hf_tagline">Best accuracy via Cellpose-SAM. Free, but rate-limited.</string>
+    <string name="backend_private_hf_label">Your own Hugging Face Space</string>
+    <string name="backend_private_hf_tagline">Best accuracy. Uses your own HF GPU minutes.</string>
+
+    <!-- ── Chip short names ────────────────────────────────────────────────── -->
+    <string name="chip_on_phone">On phone</string>
+    <string name="chip_public_space">Public Space</string>
+    <string name="chip_your_space">Your Space</string>
+
+    <!-- ── Onboarding ──────────────────────────────────────────────────────── -->
+    <string name="onboarding_title">Welcome to CellSeg</string>
+    <string name="onboarding_body">Capture or import a microscopy image and run automated cell segmentation — on your device or via a cloud model.\n\nLocal mode works fully offline. Cloud mode requires network and uses Cellpose-SAM on a Hugging Face Space.</string>
+    <string name="onboarding_download_model">Download cyto3 model now (~26 MB, one-time)</string>
+    <string name="onboarding_skip">Skip for now</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_get_started">Get started</string>
+    <string name="onboarding_hf_token_hint">Paste your Hugging Face token here (optional)</string>
+    <string name="onboarding_hf_token_link">Get a token at huggingface.co/settings/tokens</string>
+
+    <!-- ── Capture screen ─────────────────────────────────────────────────── -->
+    <string name="capture_camera_rationale">We use the camera to capture images of cells through your microscope eyepiece or device. Images stay on your device unless you run cloud segmentation.</string>
+    <string name="capture_pick_gallery">Gallery</string>
+    <string name="capture_use_photo">Use</string>
+    <string name="capture_retake">Retake</string>
+    <string name="capture_tap_to_focus">Tap to focus</string>
+
+    <!-- ── Sample context ─────────────────────────────────────────────────── -->
+    <string name="sample_id_hint">Sample ID</string>
+    <string name="timepoint_hint">Timepoint</string>
+    <string name="passage_hint">Passage</string>
+    <string name="well_hint">Well (e.g. A1)</string>
+    <string name="channel_label">Channel</string>
+    <string name="magnification_label">Magnification</string>
+
+    <!-- ── Analyze screen ─────────────────────────────────────────────────── -->
+    <string name="run_cellpose">Run Cellpose</string>
+    <string name="download_model_cta">Download model (26 MB)</string>
+    <string name="params_max_resize">Max dimension (px)</string>
+    <string name="params_max_iter">Max iterations</string>
+    <string name="params_flow_threshold">Flow threshold</string>
+    <string name="params_cellprob_threshold">Cell probability threshold</string>
+    <string name="params_reset">Reset to defaults</string>
+    <string name="params_presets">Presets</string>
+    <string name="cancel">Cancel</string>
+
+    <!-- ── Progress states ────────────────────────────────────────────────── -->
+    <string name="status_preprocessing">Preprocessing…</string>
+    <string name="status_inference">Running inference…</string>
+    <string name="status_postprocessing">Post-processing…</string>
+    <string name="status_uploading">Uploading image…</string>
+    <string name="status_queued">Queued (#%1$d, ~%2$ds)</string>
+    <string name="status_running_gpu">Running on GPU…</string>
+    <string name="status_decoding">Decoding result…</string>
+    <string name="status_done">Done</string>
+
+    <!-- ── RunDetail screen ───────────────────────────────────────────────── -->
+    <string name="cell_count_label">Cells</string>
+    <string name="confluence_label">Confluence</string>
+    <string name="mean_area_label">Mean area</string>
+    <string name="median_area_label">Median area</string>
+    <string name="density_label">Density</string>
+    <string name="not_calibrated">Not calibrated</string>
+    <string name="run_via">Run via: %1$s</string>
+    <string name="action_rerun">Re-run</string>
+    <string name="action_export">Export</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_share">Share</string>
+
+    <!-- ── History screen ─────────────────────────────────────────────────── -->
+    <string name="history_empty">No runs yet.\nCapture your first sample to get started.</string>
+    <string name="history_search_hint">Search runs…</string>
+    <string name="history_filter_all">All</string>
+    <string name="history_filter_local">Local</string>
+    <string name="history_filter_cloud">Cloud</string>
+    <string name="history_no_results">No runs match the current filter.</string>
+    <string name="batch_title">Batch</string>
+    <string name="batch_add_images">Add images</string>
+    <string name="batch_run_all">Run %1$d images</string>
+    <string name="batch_empty_hint">Tap + to add up to %1$d images</string>
+    <string name="filter_all">All</string>
+    <string name="filter_local">Local</string>
+    <string name="filter_cloud">Cloud</string>
+
+    <!-- ── Settings ───────────────────────────────────────────────────────── -->
+    <string name="settings_hf_token">Hugging Face token</string>
+    <string name="settings_hf_token_hint">Paste token (stored encrypted)</string>
+    <string name="settings_test_connection">Test connection</string>
+    <string name="settings_default_backend">Default backend</string>
+    <string name="settings_auto_fallback">Auto-fall-back to local when offline</string>
+    <string name="settings_custom_space_slug">Custom Space slug</string>
+    <string name="settings_local_model">Local model</string>
+    <string name="settings_calibration">Calibration</string>
+    <string name="settings_data">Data</string>
+    <string name="settings_licence">Licence &amp; attribution</string>
+    <string name="settings_privacy">Privacy policy</string>
+    <string name="settings_about">About</string>
+    <string name="privacy_url">https://cellseg.yaylali.uk/privacy/</string>
+    <string name="source_repo_url">https://github.com/kmlyyll/cellseg</string>
+
+    <!-- ── Model management ───────────────────────────────────────────────── -->
+    <string name="model_status_ready">Ready</string>
+    <string name="model_status_not_downloaded">Not downloaded</string>
+    <string name="model_status_downloading">Downloading %1$d%%</string>
+    <string name="model_status_failed">Failed</string>
+    <string name="model_download">Download</string>
+    <string name="model_redownload">Re-download</string>
+    <string name="model_delete">Delete model</string>
+    <string name="model_test_inference">Test inference (~3 s)</string>
+    <string name="model_last_verified">Last verified: %1$s</string>
+
+    <!-- ── Offline indicator ──────────────────────────────────────────────── -->
+    <string name="offline_indicator">Offline – cloud unavailable</string>
+
+    <!-- ── Error messages ─────────────────────────────────────────────────── -->
+    <string name="error_network_unavailable">No network connection.</string>
+    <string name="error_rate_limited">Rate limited by the server. Try again later.</string>
+    <string name="error_space_cold">The Hugging Face Space is starting up. Please wait a moment and retry.</string>
+    <string name="run_waking_title">Waking up HF Space…</string>
+    <string name="run_waking_retry_in">Retrying in %1$ds</string>
+    <string name="run_retry_now">Retry now</string>
+    <string name="run_give_up">Give up</string>
+    <string name="error_image_too_large">Image is too large (smallest dim &gt; 20 000 px). Please resize before analysing.</string>
+    <string name="error_unsupported_format">Unsupported image format. Please use PNG, JPG, or single-page TIFF.</string>
+    <string name="error_backend_error">The segmentation backend returned an error: %1$s</string>
+    <string name="error_cancelled">Run cancelled.</string>
+    <string name="error_model_not_downloaded">Local model not downloaded. Download it in Settings → Local model.</string>
+    <string name="error_model_corrupted">Local model file is corrupted. Please re-download.</string>
+    <string name="error_onnx_init_failed">ONNX Runtime could not initialise on this device. Cloud mode is still available.</string>
+    <string name="error_inference_oom">Image too large for on-device inference. Try a smaller image or cloud mode.</string>
+    <string name="error_validation_failed">Run flagged: cell count looks implausible. Raw result saved for inspection.</string>
+
+    <!-- ── Missing keys added for screens ───────────────────────────────── -->
+    <string name="onboarding_subtitle">Automated cell segmentation for bench scientists. Runs on-device or via cloud.</string>
+    <string name="licence_checkbox_label">I have read and agree to the terms above</string>
+    <string name="licence_ack_button">Continue</string>
+    <string name="home_tagline">Capture or import a microscopy image to begin</string>
+    <string name="home_capture">Capture</string>
+    <string name="home_gallery">Gallery</string>
+    <string name="home_history">View history</string>
+    <string name="capture_title">Capture image</string>
+    <string name="capture_instructions">Open the camera to photograph your sample.</string>
+    <string name="capture_open_camera">Open camera</string>
+    <string name="gallery_title">Select image</string>
+    <string name="gallery_instructions">Choose a PNG, JPG, or TIFF image from your device.</string>
+    <string name="gallery_pick_image">Browse files</string>
+    <string name="sample_context_title">Sample details</string>
+    <string name="sample_channel_label">Imaging channel</string>
+    <string name="sample_magnification_label">Magnification</string>
+    <string name="sample_notes_label">Notes (optional)</string>
+    <string name="action_continue">Continue</string>
+    <string name="analyze_title">Run parameters</string>
+    <string name="analyze_diameter_label">Cell diameter</string>
+    <string name="analyze_flow_threshold_label">Flow threshold</string>
+    <string name="analyze_cellprob_label">Cell probability threshold</string>
+    <string name="analyze_backend_label">Backend</string>
+    <string name="analyze_run_button">Run segmentation</string>
+    <string name="run_progress_subtitle">This may take a few seconds…</string>
+    <string name="run_detail_title">Run detail</string>
+    <string name="run_detail_outline_cd">Cell outline overlay</string>
+    <string name="run_detail_metrics_title">Metrics</string>
+    <string name="metric_cell_count">Cell count</string>
+    <string name="metric_confluence">Confluence</string>
+    <string name="metric_mean_area_px">Mean area (px²)</string>
+    <string name="metric_mean_area_um">Mean area (µm²)</string>
+    <string name="history_title">History</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_backend_section">Backend</string>
+    <string name="settings_hf_token_section">Hugging Face token</string>
+    <string name="settings_token_set">Token saved (encrypted)</string>
+    <string name="settings_token_clear">Clear token</string>
+    <string name="settings_token_save">Save token</string>
+    <string name="settings_model_management">Model management</string>
+    <string name="settings_attribution">Licence &amp; attribution</string>
+    <string name="model_mgmt_title">Model management</string>
+    <string name="model_cyto3_name">Cellpose cyto3 (ONNX FP16)</string>
+    <string name="model_cyto3_desc">Local on-device model (~26 MB). Downloaded once to internal storage.</string>
+    <string name="model_status_downloaded">Downloaded and ready</string>
+    <string name="model_delete_button">Delete model</string>
+    <string name="model_download_button">Download model (~26 MB)</string>
+    <string name="model_redownload_button">Re-download</string>
+    <string name="attribution_title">Licence &amp; attribution</string>
+    <string name="attribution_cellpose_cc_notice">The Cellpose-SAM model (cloud backend) is licensed under CC BY-NC 4.0 and is intended for non-commercial research only.</string>
+
+    <!-- ── Content descriptions ───────────────────────────────────────────── -->
+    <string name="cd_original_image">Original image</string>
+    <string name="cd_outline_overlay">Cell outline overlay</string>
+    <string name="cd_flows_image">Flow field visualisation</string>
+    <string name="cd_backend_chip">Change segmentation backend</string>
+    <string name="cd_capture_button">Capture image</string>
+    <string name="cd_settings">Settings</string>
+    <string name="cd_back">Navigate back</string>
+    <string name="cd_export">Export CSV</string>
+    <string name="cd_save">Save</string>
+    <string name="cd_delete">Delete</string>
+    <string name="settings_calibration_add">Add calibration</string>
+    <string name="settings_data_management">Data</string>
+    <string name="settings_clear_cache">Clear cache</string>
+    <string name="settings_export_all">Export all</string>
+    <string name="settings_delete_all">Delete all data</string>
+    <string name="settings_delete_all_confirm">This will permanently delete all run history and output files. This action cannot be undone.</string>
+</resources>

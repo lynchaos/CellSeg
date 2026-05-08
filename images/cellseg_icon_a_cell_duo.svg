@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <title>CellSeg app icon — Option A · Cell duo</title>
+  <desc>Two segmented cell shapes on a deep teal background, with coral outlines and small nuclei — evokes the segmentation result the app produces.</desc>
+  <rect width="512" height="512" fill="#0F4C5C"/>
+  <g transform="translate(195 240) rotate(-18)">
+    <ellipse cx="0" cy="0" rx="125" ry="140" fill="#F1FAEE" stroke="#FF6B35" stroke-width="11"/>
+    <ellipse cx="0" cy="-5" rx="22" ry="18" fill="#FF6B35"/>
+  </g>
+  <g transform="translate(335 308) rotate(22)">
+    <ellipse cx="0" cy="0" rx="110" ry="92" fill="#F1FAEE" stroke="#FF6B35" stroke-width="11"/>
+    <ellipse cx="0" cy="-3" rx="16" ry="13" fill="#FF6B35"/>
+  </g>
+</svg>

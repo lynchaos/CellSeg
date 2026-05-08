@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package uk.yaylali.cellseg;
+
+option java_package = "uk.yaylali.cellseg.data.datastore.proto";
+option java_multiple_files = true;
+
+// Root settings persisted for the lifetime of the app installation.
+message AppSettingsProto {
+  bool licence_acknowledged     = 1;
+  int32 default_backend_tier    = 2;   // maps to BackendTier ordinal
+  string custom_space_slug      = 3;
+  bool auto_fallback_to_local   = 4;
+  SegmentationParamsProto default_params = 5;
+  ModelMetadataProto cyto3_model_metadata = 6;
+  repeated CalibrationEntryProto calibrations = 7;
+  repeated NamedPresetProto presets = 8;
+  bool onboarding_completed     = 9;
+}
+
+message SegmentationParamsProto {
+  int32 max_resize         = 1;
+  int32 max_iter           = 2;
+  float flow_threshold     = 3;
+  float cellprob_threshold = 4;
+  double diameter          = 5;
+}
+
+message ModelMetadataProto {
+  string model_id               = 1;
+  string version                = 2;
+  int64  size_bytes             = 3;
+  string sha256                 = 4;
+  int64  downloaded_at_epoch_ms = 5;
+  string source_url             = 6;
+  string local_path             = 7;
+}
+
+message CalibrationEntryProto {
+  string magnification_label = 1;
+  float  px_per_micron       = 2;
+  float  fov_width_mm        = 3;
+  float  fov_height_mm       = 4;
+}
+
+message NamedPresetProto {
+  string name = 1;
+  SegmentationParamsProto params = 2;
+}

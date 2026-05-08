@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    Foreground for the CellSeg adaptive icon.
+    Derived from cellseg_icon_a_cell_duo.svg (512×512 → 108×108, scale ≈ 0.2109).
+
+    Cell 1: centre (41.1, 50.6), rx=26.4 ry=29.5, rotation −18°
+    Cell 2: centre (70.7, 65.0), rx=23.2 ry=19.4, rotation +22°
+    Both: fill #F1FAEE (cream), stroke #FF6B35 (coral), stroke-width 2.3
+    Nuclei: fill #FF6B35, no stroke
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!--
+        Scale 0.72 centred at (54,54) keeps all content inside the 72dp safe zone.
+        Without this, cells extend from ~14 to ~94 and get clipped by the launcher mask.
+    -->
+    <group
+        android:scaleX="0.72"
+        android:scaleY="0.72"
+        android:pivotX="54"
+        android:pivotY="54">
+
+    <!-- Cell 1 — large, tilted −18° -->
+    <group
+        android:rotation="-18"
+        android:pivotX="41.1"
+        android:pivotY="50.6">
+        <!-- body: ellipse centred at (41.1, 50.6) rx=26.4 ry=29.5 -->
+        <path
+            android:fillColor="#F1FAEE"
+            android:strokeColor="#FF6B35"
+            android:strokeWidth="2.3"
+            android:pathData="M 67.5,50.6 A 26.4,29.5 0 1 0 14.7,50.6 A 26.4,29.5 0 1 0 67.5,50.6 Z"/>
+        <!-- nucleus: ellipse centred at (41.1, 49.5) rx=4.6 ry=3.8 -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M 45.7,49.5 A 4.6,3.8 0 1 0 36.5,49.5 A 4.6,3.8 0 1 0 45.7,49.5 Z"/>
+    </group>
+
+    <!-- Cell 2 — smaller, tilted +22° -->
+    <group
+        android:rotation="22"
+        android:pivotX="70.7"
+        android:pivotY="65.0">
+        <!-- body: ellipse centred at (70.7, 65.0) rx=23.2 ry=19.4 -->
+        <path
+            android:fillColor="#F1FAEE"
+            android:strokeColor="#FF6B35"
+            android:strokeWidth="2.3"
+            android:pathData="M 93.9,65.0 A 23.2,19.4 0 1 0 47.5,65.0 A 23.2,19.4 0 1 0 93.9,65.0 Z"/>
+        <!-- nucleus: ellipse centred at (70.7, 64.4) rx=3.4 ry=2.7 -->
+        <path
+            android:fillColor="#FF6B35"
+            android:pathData="M 74.1,64.4 A 3.4,2.7 0 1 0 67.3,64.4 A 3.4,2.7 0 1 0 74.1,64.4 Z"/>
+    </group>
+
+    </group><!-- end safe-zone scale group -->
+</vector>

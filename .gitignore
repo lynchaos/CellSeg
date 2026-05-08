@@ -1,0 +1,45 @@
+# CellSeg – Android
+
+# Generated files
+/app/build/
+/build/
+
+# Gradle wrapper binaries
+gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+*.ipr
+*.iws
+local.properties
+
+# Keystore (never commit!)
+*.jks
+*.keystore
+*.p12
+upload-keystore.jks
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Room schema (exported; keep in source control)
+# app/schemas/ — intentionally NOT ignored
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# HF token and private planning docs — never commit
+identity_and_infrastructure_v2.md
+.env
+*.env
